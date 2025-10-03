@@ -22,25 +22,6 @@
                 "isDefault": true
             },
             "detail": "컴파일러: /usr/bin/gcc"
-        },
-        {
-            "label": "build & run",
-            "type": "shell",
-            "command": "bash",
-            "args": [
-                "-c",
-                "clear && /usr/bin/gcc -g ${file} -o ${fileDirname}/${fileBasenameNoExtension}.out && ${fileDirname}/${fileBasenameNoExtension}.out"
-            ],
-            "options": {
-                "cwd": "${fileDirname}"
-            },
-            "problemMatcher": [
-                "$gcc"
-            ],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            }
         }
     ]
 }
