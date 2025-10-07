@@ -1,3 +1,6 @@
 /test/**/*
+**/input/**/*
+**/output/**/*
+
 *.out
 .DS_Store

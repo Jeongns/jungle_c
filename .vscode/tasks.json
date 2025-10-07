@@ -22,6 +22,22 @@
                 "isDefault": true
             },
             "detail": "컴파일러: /usr/bin/gcc"
+        },
+        {
+            "type": "shell",
+            "label": "Run C with IO redirect (auto in/out files)",
+            "command": "${workspaceFolder}/.vscode/script/auto_in_out.sh ${fileBasenameNoExtension}",
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "dependsOn": [
+                "C/C++: gcc build active file"
+            ],
+            "detail": "input파일에 따른 output파일 출력"
         }
     ]
 }
