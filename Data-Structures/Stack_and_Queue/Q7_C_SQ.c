@@ -106,23 +106,18 @@ char getClosingBracket(char openBracket) {
 }
 
 int balanced(char *expression) {
-    Stack *stack = malloc(sizeof(Stack));
-    int result = 0;
-	
+    Stack stack;
+
     for (int i = 0; expression[i] != '\0'; i++) {
         if (expression[i] == '(' || expression[i] == '{' || expression[i] == '[') {
-            push(stack, expression[i]);
+            push(&stack, expression[i]);
             continue;
         }
 
-        if (getClosingBracket(pop(stack)) != expression[i]) {
-            result = 1;
-            break;
-        }
+        if (isEmptyStack(&stack) || getClosingBracket(pop(&stack)) != expression[i]) return 1;
     }
 
-    free(stack);
-    return result;
+    return !isEmptyStack(&stack);
 }
 
 ////////////////////////////////////////////////////////////
