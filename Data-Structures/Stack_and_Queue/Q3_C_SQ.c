@@ -96,14 +96,15 @@ int main() {
 
 /////////////////////////////////////////////////////////////////////////////////
 
-int abs(int number) { return number < 0 ? -number : number; }
-
 int isStackPairwiseConsecutive(Stack *s) {
     if (s == NULL) return -1;
     if (s->ll.size % 2 == 1) return 0;
+    int result = 1;
     while (!isEmptyStack(s))
-        if (abs(pop(s) - pop(s) != 1)) return 0;
-    return 1;
+        if (abs(pop(s) - pop(s) != 1)) result = 0;
+
+    removeAllItems(&(s->ll));
+    return result;
 }
 
 //////////////////////////////////////////////////////////////////////////////////
