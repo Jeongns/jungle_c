@@ -105,6 +105,7 @@ int main() {
 
 void createStackFromLinkedList(LinkedList *ll, Stack *s) {
     if (ll == NULL || s == NULL) return;
+    removeAllItemsFromStack(s);
     ListNode *cur = ll->head;
     while (cur) {
         push(s, cur->item);
