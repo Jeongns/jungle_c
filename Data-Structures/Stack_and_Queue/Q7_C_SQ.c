@@ -107,17 +107,24 @@ char getClosingBracket(char openBracket) {
 
 int balanced(char *expression) {
     Stack stack;
+    stack.ll.head = NULL;
 
+    int result = 0;
     for (int i = 0; expression[i] != '\0'; i++) {
         if (expression[i] == '(' || expression[i] == '{' || expression[i] == '[') {
             push(&stack, expression[i]);
             continue;
         }
 
-        if (isEmptyStack(&stack) || getClosingBracket(pop(&stack)) != expression[i]) return 1;
+        if (isEmptyStack(&stack) || getClosingBracket(pop(&stack)) != expression[i]) {
+            result = 1;
+            break;
+        }
     }
-
-    return !isEmptyStack(&stack);
+    
+    if (!result) result = !isEmptyStack(&stack);
+    removeAllItemsFromStack(&stack);
+    return result;
 }
 
 ////////////////////////////////////////////////////////////
