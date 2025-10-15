@@ -82,32 +82,32 @@ int main() {
 void moveEvenItemsToBack(LinkedList *ll) {
     if (ll == NULL || ll->head == NULL) return;
     ListNode *cur = ll->head;
-    ListNode *oddNodeHeaader = NULL, *oddCurrentNode = NULL;
-    ListNode *evenNodeHeader = NULL, *evenCurrentNode = NULL;
+    ListNode *oddHead = NULL, *oddTail = NULL;
+    ListNode *evenHead = NULL, *eventTail = NULL;
 
     while (cur != NULL) {
-        ListNode **oddOrEvenNodeHeder = (cur->item % 2 == 1) ? &oddNodeHeaader : &evenNodeHeader;
-        ListNode **oddOrEvenCurrentNode = (cur->item % 2 == 1) ? &oddCurrentNode : &evenCurrentNode;
+        ListNode **nodeHeader = cur->item % 2 ? &oddHead : &evenHead;
+        ListNode **nodeTail = cur->item % 2 ? &oddTail : &eventTail;
 
-        if (*oddOrEvenNodeHeder == NULL) {
-            *oddOrEvenNodeHeder = cur;
-            *oddOrEvenCurrentNode = cur;
+        if (*nodeHeader == NULL) {
+            *nodeHeader = cur;
+            *nodeTail = cur;
             cur = cur->next;
             continue;
         }
 
-        (*oddOrEvenCurrentNode)->next = cur;
-        *oddOrEvenCurrentNode = (*oddOrEvenCurrentNode)->next;
+        (*nodeTail)->next = cur;
+        *nodeTail = (*nodeTail)->next;
 
         cur = cur->next;
     }
-    if (evenCurrentNode != NULL) evenCurrentNode->next = NULL;
+    if (eventTail != NULL) eventTail->next = NULL;
 
-    ll->head = evenNodeHeader;
+    ll->head = evenHead;
 
-    if (oddNodeHeaader != NULL) {
-        ll->head = oddNodeHeaader;
-        oddCurrentNode->next = evenNodeHeader;
+    if (oddHead != NULL) {
+        ll->head = oddHead;
+        oddTail->next = evenHead;
     }
 }
 
